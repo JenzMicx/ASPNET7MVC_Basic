@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ASPNET7MVCCRUD.Models.Revenue_ExpenseModel>;
+@{
+    ViewData["Title"] = "Main";
+}
+
+@if (Model.Count() > 0 ) //ถ้ามีจำนวนแถว(row)ที่เก็บไว้ใน database > 0
+{
+    <h1 class="text-center">Main</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <!--tr = row-->
+                <th>ID</th> <!--th = header-->
+                <th class="text-center">DateTime</th>
+                <th class="text-center">Product</th>
+                <th>Income</th>
+                <th>expenditure</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="table-light">
+            @foreach (var Data in Model)
+            {
+                <tr>
+                    <td class="text-center">@Data.Id</td>
+                    <td class="text-center">@Data.Date</td>
+                    <td class="text-center">@Data.Item</td>
+                    <td class="text-center">@Data.Revenue</td>
+                    <td class="text-center">@Data.Expense</td>
+                    <td>
+                        <a class="btn btn-warning" asp-controller="Ledger"
+                           asp-action="EditTable" asp-route-id="@Data.Id">Edit</a>
+                    </td>  <!--การแก้ไขต้องส่ง id ติดไปด้วย or การแก้ไขข้อมูลต้องอาศัยตัว Id-->
+                    <td>
+                        <a class="btn btn-danger" asp-controller="Ledger" asp-action="Delete"
+                           asp-route-id="@Data.Id"
+                           onclick="return confirm('Do you want to delete?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <div class="alert alert-secondary">Don't have data in database</div>
+}

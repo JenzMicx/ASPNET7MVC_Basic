@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ASPNET7MVCCRUD.Models.Revenue_ExpenseModel>; //import model to HTML file
+<!-- IEnumerable ช่วยมัด model ให้เป็นกลุ่มหรือเข้าใจง่ายๆคือ มันช่วยทำให้มองเห็น object ได้หลายตัวเพราะจับข้อมูลจาก model มามัดรวมกันไว้-->
+@{
+    ViewData["Title"] = "Revenue";
+}
+
+<h1 class="text-center">Revenue</h1>
+
+
+@foreach(var Data in Model){
+<!--<p>ID : @Data.Id</p>-->
+    <p>DateTime : @Data.Date</p>
+    <p>Item : @Data.Item</p>
+    <p>Revenue : @Data.Revenue</p>
+    <p>Expense : @Data.Expense</p>
+    @if (Data.Expense > 100)
+    {
+        <strong style="color:red">Overspend!</strong>
+    }
+    else
+    {
+        <strong class="text-success">spend very done</strong>    
+    }
+    <hr />
+}

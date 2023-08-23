@@ -1,0 +1,45 @@
+﻿@model Revenue_ExpenseModel;
+@{
+    ViewData["Title"] = "CreateTable";
+}
+
+
+<h1 class="text-center">Summary</h1>
+<!--ในการส่งข้อมูลไปทำงานก็จะต้องมา defind form กันซึ่งมีทั้งหมด 3 part
+    1.Format send data via mothod GET or POST  -> ex. method="POST"
+    2.Where to send data and  from this form   -> ex. asp-controller="Ledger"
+    3.What is action method                    -> ex.asp-action="Create"
+-->
+
+<form method="POST" asp-controller="Ledger" asp-action="CreateTable">
+    <div class="form-group">    
+        <!-- asp-for is tag helper สำหรับให้ label ไปเชื่อมกับ model Data แล้วเอาค่า property มาผูกกับ label ไว้สำหรับป้อน input -->
+        <!--หรือเรียกว่า Data building ก็คือการนำข้อมูลที่อยู่บน form ไปผูกกับตัว model-->
+        <label asp-for="Item"></label> <!--label เป็นการแสดงข้อความในแบบ form by การใส่ input -->
+        <input type="text" asp-for="Item" class="form-control"/>
+        <!--span ทำหน้าที่แจ้งข้อความตอบกลับในกรณีที่ "ไม่ได้มีการป้อนชื่อ"-->
+        <span asp-validation-for="Item" class="text-danger"></span>      
+    </div>
+
+    <!--<div class="form-group">
+        <label asp-for="Date"></label>
+        <input type="text" asp-for="Date" class="form-control" />
+    </div>-->
+
+    <div class="form-group">
+        <label asp-for="Revenue"></label>
+        <input type="number" asp-for="Revenue" class="form-control"/>
+        <span asp-validation-for="Revenue" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Expense"></label>
+        <input type="number" asp-for="Expense" class="form-control"/>
+        <span asp-validation-for="Expense" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn-primary my-4">Save</button>
+    <!--ต้องการให้ส่งข้อมูลไปทำงานที่ส่วนใดหลังจากกดปุ่ม save ของ form นี้, This example จะส่งไปทำงานที่ controller
+        คือ controller receive from view มาใช้งานและนำข้อมูลดังกล่าวโยนไปเก็บใน database โดยดำเนินการผ่านตัว model นั่นเอง-->
+
+</form>

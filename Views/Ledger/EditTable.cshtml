@@ -1,0 +1,28 @@
+﻿@model Revenue_ExpenseModel;
+@{
+    ViewData["Title"] = "EditTable";
+}
+
+<h1>EditTable</h1>
+<form method="POST" asp-controller="Ledger" asp-action="EditTable">
+    <div class="form-group">
+        <label asp-for="Item"></label>
+        <input type="text" asp-for="Item" class="form-control" />
+        <span asp-validation-for="Item" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Revenue"></label>
+        <input type="number" asp-for="Revenue" class="form-control" />
+        <span asp-validation-for="Revenue" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Expense"></label>
+        <input type="number" asp-for="Expense" class="form-control" />
+        <span asp-validation-for="Expense" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn-primary my-4">Update</button>
+</form>
+
